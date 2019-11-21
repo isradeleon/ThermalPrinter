@@ -22,6 +22,39 @@ dependencies {
 }
 ```
 
+## Usage
+This library includes the code for the bluetooth connection. All you need to do is first to
+start the ConnectBluetoothActivity:
+
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+    ...
+
+    startActivityForResult(
+        Intent(this, ConnectBluetoothActivity::class.java),
+        ConnectBluetoothActivity.CONNECT_BLUETOOTH
+    )
+}
+```
+
+You'll get Activity.RESULT_OK if the device was successfully connected via bluetooth:
+
+```kotlin
+override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    super.onActivityResult(requestCode, resultCode, data)
+
+    if(resultCode == Activity.RESULT_OK && requestCode == ConnectBluetoothActivity.CONNECT_BLUETOOTH){
+        // ThermalPrinter is ready
+        ThermalPrinter.instance
+            .write("Hello world", PrintAlignment.CENTER, PrintFont.LARGE)
+            .fillLineWith('-')
+            .write("Let's eat","some tacos")
+            .write("Price","$1 USD")
+            .print()
+    }
+}
+```
+
 ## ThermalPrinter methods
 
 | Method | Description |
