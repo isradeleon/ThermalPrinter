@@ -1,6 +1,6 @@
 # ThermalPrinter
 
-Android library for communicating with thermal printers via Bluetooth.
+Android library for communication with thermal printers via Bluetooth.
 This library is only compatible with [**androidx**](https://developer.android.com/jetpack/androidx/).
 
 ## Installation
@@ -55,8 +55,8 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
-If you want to access or modify the BluetoothSocket, you can do it with the BluetoothConnection class. ThermalPrinter
-uses this socket to send all its commands to the printer.
+If you want to set or modify the BluetoothSocket by yourself, you can do it with the **BluetoothConnection** class.
+ThermalPrinter uses this socket to send all its commands to the printer.
 
 ## ThermalPrinter methods
 
