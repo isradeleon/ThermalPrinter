@@ -1,5 +1,5 @@
 # ThermalPrinter
-[![Release](https://img.shields.io/github/release/isradeleon/ThermalPrinter.svg)](https://jitpack.io/#isradeleon/ThermalPrinter)
+ [![Release](https://img.shields.io/github/release/isradeleon/ThermalPrinter.svg)](https://jitpack.io/#isradeleon/ThermalPrinter)
 
 Android library for communication with thermal printers via Bluetooth.
 This library is only compatible with [**androidx**](https://developer.android.com/jetpack/androidx/).
@@ -54,7 +54,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
             .write("Hello world", PrintAlignment.CENTER, PrintFont.LARGE)
             .fillLineWith('-')
             .write("Let's eat","some tacos")
-            .write("Price","$1 USD")
+            .write("Price","0.5 USD")
             .print()
     }
 }
@@ -75,6 +75,12 @@ ThermalPrinter uses this socket to send all its commands to the printer.
 | **write(key: String, value: String, separator: Char)** | Writes a line with key value pair and fills space with separator |
 | **newLine()** | Writes a new line to thermal printer |
 | **fillLineWith(char: Char)** | Writes a line filled with the specified char |
+
+## Result
+
+<p align="center">
+    <img src="photo.jpg">
+</p>
 
 ## License
 

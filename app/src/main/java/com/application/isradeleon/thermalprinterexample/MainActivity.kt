@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 .write("Hello world", PrintAlignment.CENTER, PrintFont.LARGE)
                 .fillLineWith('-')
                 .write("Let's eat","some tacos")
-                .write("Price","$1 USD")
+                .write("Price","0.5 USD")
                 .print()
         }
     }
