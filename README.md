@@ -3,6 +3,10 @@
 Android library for communication with thermal printers via Bluetooth.
 This library is only compatible with [**androidx**](https://developer.android.com/jetpack/androidx/).
 
+<p align="center">
+    <img src="capture.png">
+</p>
+
 ## Installation
 
 Add jitpack.io to your root build.gradle:
