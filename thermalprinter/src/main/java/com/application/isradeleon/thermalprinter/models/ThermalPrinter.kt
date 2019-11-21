@@ -16,10 +16,10 @@ class ThermalPrinter {
         return this
     }
 
-    fun write(key: String, value: String, separator: String = "."): ThermalPrinter{
+    fun write(key: String, value: String, separator: Char = '.'): ThermalPrinter{
         val ans = key + value;
         if(ans.length <= charsPerRow){
-            write((key+separator.repeat(charsPerRow-ans.length)+value), PrintAlignment.CENTER)
+            write((key+separator.toString().repeat(charsPerRow-ans.length)+value), PrintAlignment.CENTER)
         }else{
             write(key+" : "+value);
         }
