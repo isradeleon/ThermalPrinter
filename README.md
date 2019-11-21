@@ -55,6 +55,9 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 }
 ```
 
+If you want to access or modify the BluetoothSocket, you can do it with the BluetoothConnection class. ThermalPrinter
+uses this socket to send all its commands to the printer.
+
 ## ThermalPrinter methods
 
 | Method | Description |

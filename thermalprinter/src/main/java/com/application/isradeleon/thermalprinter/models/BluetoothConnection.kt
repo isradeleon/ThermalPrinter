@@ -6,7 +6,7 @@ import android.os.AsyncTask
 import android.os.Handler
 import android.os.Looper
 
-open class BluetoothConnection {
+class BluetoothConnection {
     companion object{
         lateinit var bluetoothSocket: BluetoothSocket
 
