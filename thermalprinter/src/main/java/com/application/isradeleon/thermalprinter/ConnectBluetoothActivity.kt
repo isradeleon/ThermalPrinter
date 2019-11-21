@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.application.isradeleon.thermalprinter.adapters.DevicesAdapter
 import kotlinx.android.synthetic.main.activity_connect_printer.*
+import java.lang.IllegalArgumentException
 
 class ConnectBluetoothActivity : AppCompatActivity() {
     val BLUETOOTH_PERMISSION = 76
@@ -82,14 +83,22 @@ class ConnectBluetoothActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        unregisterReceiver(broadcastReceiver)
+        try{
+            unregisterReceiver(broadcastReceiver)
+        }catch (e: IllegalArgumentException){
+            e.printStackTrace()
+        }
         super.onDestroy()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == BLUETOOTH_PERMISSION){
-            if(resultCode == RESULT_OK){
+            if(hasAllPermissions()){
                 findDevices()
             }else{
                 finish()
