@@ -1,6 +1,7 @@
 # ThermalPrinter
 [![Release](https://img.shields.io/github/release/isradeleon/ThermalPrinter.svg)](https://jitpack.io/#isradeleon/ThermalPrinter)
 [![Language](https://img.shields.io/badge/language-kotlin-orange.svg)](https://kotlinlang.org/)
+[![Support](https://img.shields.io/badge/support-AndroidX-brightgreen)](https://developer.android.com/jetpack/androidx)
 
 Android library for communication with thermal printers via Bluetooth.
 This library is only compatible with [**androidx**](https://developer.android.com/jetpack/androidx/).
