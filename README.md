@@ -1,6 +1,7 @@
 # ThermalPrinter
 [![Release](https://img.shields.io/github/release/isradeleon/ThermalPrinter.svg)](https://jitpack.io/#isradeleon/ThermalPrinter)
-[![Language](https://img.shields.io/badge/language-kotlin-orange.svg)](https://kotlinlang.org/)
+[![Languages](https://img.shields.io/badge/languages-kotlin-orange.svg)](https://kotlinlang.org/)
+[![Languages](https://img.shields.io/badge/languages-java-red.svg)](https://docs.oracle.com/javase/7/docs/technotes/guides/language/)
 [![Support](https://img.shields.io/badge/support-AndroidX-brightgreen)](https://developer.android.com/jetpack/androidx)
 
 Android library for communication with thermal printers via Bluetooth.
@@ -57,6 +58,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
             .fillLineWith('-')
             .write("Let's eat","some tacos")
             .write("Price","0.5 USD")
+            .writeImage(BitmapFactory.decodeResource(getResources(), R.drawable.panda))
             .print()
     }
 }
@@ -75,14 +77,19 @@ ThermalPrinter uses this socket to send all its commands to the printer.
 | **write(text: String, alignment: PrintAlignment, font: PrintFont)** | Writes text, sets text alignment and font size |
 | **write(key: String, value: String)** | Writes a line with key value pair |
 | **write(key: String, value: String, separator: Char)** | Writes a line with key value pair and fills space with separator |
+| **writeImage(bitmap: Bitmap)** | Writes an image to thermal printer. Image must be **black and white format** |
 | **newLine()** | Writes a new line to thermal printer |
 | **fillLineWith(char: Char)** | Writes a line filled with the specified char |
 
 ## Result
 
 <p align="center">
-    <img src="photo.jpg">
+    <img src="photo.png">
 </p>
+
+## Credits
+This library uses [Thermal Printer in Android](https://github.com/imrankst1221/Thermal-Printer-in-Android)
+code for image printing.
 
 ## License
 

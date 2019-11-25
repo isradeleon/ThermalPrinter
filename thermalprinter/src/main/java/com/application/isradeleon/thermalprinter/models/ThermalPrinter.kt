@@ -1,7 +1,13 @@
 package com.application.isradeleon.thermalprinter.models
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import com.application.isradeleon.thermalprinter.printer.PrinterCommands
+import com.application.isradeleon.thermalprinter.utils.BitmapHelper
+import com.application.isradeleon.thermalprinter.utils.BitmapUtils
 import java.lang.Exception
+import java.lang.IllegalStateException
+import java.lang.NullPointerException
 
 class ThermalPrinter {
 
@@ -13,6 +19,17 @@ class ThermalPrinter {
 
     fun fillLineWith(char: Char): ThermalPrinter{
         write(char.toString().repeat(charsPerRow), PrintAlignment.CENTER)
+        return this
+    }
+
+    fun writeImage(bitmap: Bitmap): ThermalPrinter{
+        try {
+            callPrinter(alignmentToCommand(PrintAlignment.CENTER))
+            callPrinter(BitmapHelper.decodeBitmap(bitmap))
+            printAndLine()
+        }catch (e: IllegalStateException){
+            write("*Error: image might be too large or not black & white format*")
+        }
         return this
     }
 

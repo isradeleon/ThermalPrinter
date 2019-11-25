@@ -2,6 +2,7 @@ package com.application.isradeleon.thermalprinterexample
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.application.isradeleon.thermalprinter.ConnectBluetoothActivity
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                 .fillLineWith('-')
                 .write("Let's eat","some tacos")
                 .write("Price","0.5 USD")
+                .writeImage(BitmapFactory.decodeResource(getResources(), R.drawable.panda))
                 .print()
         }
     }

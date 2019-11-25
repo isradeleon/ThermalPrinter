@@ -42,6 +42,19 @@ class ConnectBluetoothActivity : AppCompatActivity() {
         }
     }
 
+    val connectionReceiver = object: BroadcastReceiver(){
+        override fun onReceive(p0: Context?, intent: Intent?) {
+            if(intent!!.action!!.equals(BluetoothAdapter.ACTION_STATE_CHANGED)){
+                val bluetoothState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE,
+                    BluetoothAdapter.ERROR)
+
+                if(bluetoothState == BluetoothAdapter.STATE_ON && devices.size == 0){
+                    findDevices()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connect_printer)
@@ -71,24 +84,43 @@ class ConnectBluetoothActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun findDevices() {
-        if(!BluetoothAdapter.getDefaultAdapter().isEnabled)
+        if(!BluetoothAdapter.getDefaultAdapter().isEnabled){
             BluetoothAdapter.getDefaultAdapter().enable()
+            safeRegisterReceiver(connectionReceiver, IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED))
+            return
+        }
+
+        devices.clear()
+        deviceAdapter.notifyDataSetChanged()
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         filter.addAction(BluetoothDevice.ACTION_NAME_CHANGED)
 
-        registerReceiver(broadcastReceiver, filter)
+        safeRegisterReceiver(broadcastReceiver, filter)
         bluetoothAdapter.startDiscovery()
     }
 
     override fun onDestroy() {
+        safeUnregisterReceiver(broadcastReceiver)
+        safeUnregisterReceiver(connectionReceiver)
+        super.onDestroy()
+    }
+
+    fun safeRegisterReceiver(receiver: BroadcastReceiver, intentFilter: IntentFilter){
         try{
-            unregisterReceiver(broadcastReceiver)
+            registerReceiver(receiver, intentFilter)
         }catch (e: IllegalArgumentException){
             e.printStackTrace()
         }
-        super.onDestroy()
+    }
+
+    fun safeUnregisterReceiver(receiver: BroadcastReceiver){
+        try{
+            unregisterReceiver(receiver)
+        }catch (e: IllegalArgumentException){
+            e.printStackTrace()
+        }
     }
 
     override fun onRequestPermissionsResult(
