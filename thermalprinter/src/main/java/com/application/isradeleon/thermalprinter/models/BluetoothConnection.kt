@@ -13,6 +13,7 @@ class BluetoothConnection {
         fun connectDevice(device: BluetoothDevice, connectionListener: ConnectionListener){
             AsyncTask.execute{
                 try{
+                    device.fetchUuidsWithSdp()
                     val uuid = device.uuids[0].uuid
                     bluetoothSocket = device.createRfcommSocketToServiceRecord(uuid)
                     bluetoothSocket.connect()
