@@ -26,7 +26,7 @@ allprojects {
 Finally add the dependency to your app build.gradle:
 ```gradle
 dependencies {
-    implementation "com.github.isradeleon:ThermalPrinter:1.0.2"
+    implementation "com.github.isradeleon:ThermalPrinter:1.0.3"
 }
 ```
 
